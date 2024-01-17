@@ -76,10 +76,10 @@ app.get(`/:last/:first`, (req,res)=>{
 })
 
 // Default local port for local testing
-const localPort = 80;
+// const localPort = 80;
 
 // env var for netlify port
-let port = process.env.PORT || localPort;
+let port = process.env.PORT // || localPort;
 
 // run the server on netlify or locally (node app.js)
 app.listen(port, () => {
