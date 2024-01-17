@@ -76,10 +76,10 @@ app.get(`/:last/:first`, (req,res)=>{
 })
 
 //Runs the server when npm app.js is run in the terminal
-// let port = process.env.PORT || 80; 
-// app.listen(port, () => {
-//     console.log(`Server Running at localhost:${port}`);
-// });
+ let port = process.env.PORT || 80; 
+ app.listen(port, () => {
+     console.log(`Server Running at localhost:${port}`);
+});
 
 
 // Export the Express app as a serverless function
