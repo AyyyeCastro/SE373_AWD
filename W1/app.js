@@ -75,11 +75,11 @@ app.get(`/:last/:first`, (req,res)=>{
 
 
 
-
-
 //Runs the server when npm app.js is run in the terminal
-let port = process.env.PORT || 80;
-app.listen(port, ()=>{
-    console.log(`Server Running at localhost:${port}`)
+// -- TESTING PORT CHANGES for Netlify deployment. 
+let port = process.env.PORT || 3000; 
+app.listen(port, () => {
+    console.log(`Server Running at localhost:${port}`);
 });
+
 
