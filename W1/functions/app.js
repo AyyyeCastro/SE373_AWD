@@ -75,10 +75,15 @@ app.get(`/:last/:first`, (req,res)=>{
     res.render(`farts`,{first:req.params.first, last:req.params.last,rules:`rules`})
 })
 
-//Runs the server when npm app.js is run in the terminal
- let port = process.env.PORT || 80; 
- app.listen(port, () => {
-     console.log(`Server Running at localhost:${port}`);
+// Default local port for local testing
+const localPort = 80;
+
+// env var for netlify port
+let port = process.env.PORT || localPort;
+
+// run the server on netlify or locally (node app.js)
+app.listen(port, () => {
+    console.log(`Server Running at http://localhost:${port}`);
 });
 
 
