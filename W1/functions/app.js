@@ -1,5 +1,6 @@
 //Set up express
 const express = require(`express`);
+const serverless = require('serverless-http');
 const app = express();
 //Include the file system functions
 const fs =require(`fs`);
@@ -16,11 +17,11 @@ app.use(express.static(`${__dirname}/public`));
 app.use(express.json())
 
 //path to the data folder
-const data = `./data`
+const data = `../data`
 
 //Route to the root directory. Displays the text in browser
 app.get(`/`, (req, res) => {
-    res.send(`<title> W1 </title><h2>Welcoeme to my first Node 
+    res.send(`<title> W1 </title><h2>Welcome to my first Node 
     application</h2>`);
 });
 
@@ -45,24 +46,25 @@ app.post(`/junk`, (req,res)=>{
 })*/
 
 //Route to /class. Reads JSON file and displays data in the browser
-app.get(`/class`, (req,res)=>{
+app.get(`/class`, (req, res) => {
     fs.readFile(
-        `${data}/class.json`, 
-        `utf8`, 
-        (err, data)=>{
-            if(err){
+        `${__dirname}/${data}/class.json`, // Adjusted path to class.json
+        `utf8`,
+        (err, data) => {
+            if (err) {
                 throw err;
             }
             res.send(JSON.parse(data));
-        })
-})
+        }
+    );
+});
 
 // ----- FOR WEEK 1 -----
-// ROUTE TO NON-EXISTING PAGE; 404 ERROR
+// ROUTE TO NON-EXISTING PAGE; 404 ERROR; FOR NETLIFY.
 app.use((req, res) => {
     res.status(404).send(`
         <title> Error </title>
-        <a href="http://localhost:${port}">HOME</a>
+        <a href="/">HOME</a>
         <h2>404 Error</h2>
         <p>Page not found.</p>
     `);
@@ -73,13 +75,12 @@ app.get(`/:last/:first`, (req,res)=>{
     res.render(`farts`,{first:req.params.first, last:req.params.last,rules:`rules`})
 })
 
-
-
 //Runs the server when npm app.js is run in the terminal
-// -- TESTING PORT CHANGES for Netlify deployment. 
-let port = process.env.PORT || 3000; 
-app.listen(port, () => {
-    console.log(`Server Running at localhost:${port}`);
-});
+// let port = process.env.PORT || 80; 
+// app.listen(port, () => {
+//     console.log(`Server Running at localhost:${port}`);
+// });
 
 
+// Export the Express app as a serverless function
+module.exports.handler = serverless(app);
