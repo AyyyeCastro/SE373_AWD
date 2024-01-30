@@ -7,46 +7,36 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" type="text/css" href="/styles.css">
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>W3 aCastro</title>
-    <style>
-        #topNav{
-            padding: 15px;
-        }
-        body{
-            height: 100%;
-            width: 100%;
-        }
-        .container{
-            margin-top: 15px;
-            padding: 15px;
-            background-color: lightgray;
-
-        }
-    </style>
   </head>
   <body>
     <!-- Image and text -->
-<nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#" id="topNav">
-      aCastro SE373 - W3
-    </a>
-  </nav>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="#" id="topNav"> aCastro SE373 - W3 </a>
+    </nav>
     <div class="container">
-        <form action="/dynTable" method="POST">
-            <label for="gridSize">Choose grid area:</label>
-            <select name="gridSize" id="gridSize">
-                <script>
-                    var chooseArea = [3,4,5,10,20];
-                    for(var i=0; i<chooseArea.length; i++){
-                        document.write('<option value="'+chooseArea[i]+'">'+chooseArea[i]+'</option>');
-                    }
-                </script>
-            </select>
-            <input type="submit" value="Submit">
-        </form>
+      <form action="/dynTable" method="POST">
+        <label for="gridSize">Choose grid area:</label>
+        <select name="gridSize" id="gridSize">
+          <script>
+            var chooseArea = [3, 4, 5, 10, 20];
+            for (var i = 0; i < chooseArea.length; i++) {
+              document.write(
+                '<option value="' +
+                  chooseArea[i] +
+                  '">' +
+                  chooseArea[i] +
+                  "</option>"
+              );
+            }
+          </script>
+        </select>
+        <input type="submit" value="Submit" />
+      </form>
     </div>
   </body>
 </html>
@@ -55,4 +45,3 @@
   integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
   crossorigin="anonymous"
 ></script>
-

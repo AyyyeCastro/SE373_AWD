@@ -20,10 +20,10 @@ app.use(express.json())
 const data = `../data`
 
 //Route to the root directory. Displays the text in browser
-// app.get(`/`, (req, res) => {
-//     res.send(`<title> W1 </title><h2>Welcome to my first Node 
-//     application</h2>`);
-// });
+ app.get(`/`, (req, res) => {
+     res.send(`<title> W1 </title><h2>Welcome to my first Node 
+    application</h2>`);
+ });
 
 function dynTable(gridSize) {
     var notice = '<h1>Your generated table</h1> <a href="/"> Go Back</a>';
@@ -40,6 +40,65 @@ function dynTable(gridSize) {
     return notice + table;
 }
 
+function error404() {
+    var notice = '<a href="/">Page does not exist!</a></br>';
+    const classList = ['still', 'rotate', 'shrink'];
+    const divCount = Math.floor(Math.random() * (51 - 20)) + 20;
+    let body = '';
+
+    // css from Canvas
+    body += `<style>
+    .still,
+    .rotate,
+    .shrink {
+      color: red;
+      display: inline-block;
+      font-size: 60px;
+      padding: 1rem;
+      text-shadow: 1px 1px 2px black;
+    }
+
+    .rotate {
+      animation: rotate 1s infinite ease;
+    }
+
+    .shrink {
+      animation: shrink 1s infinite ease;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotateZ(-30deg);
+      }
+      50% {
+        transform: rotateZ(30deg);
+      }
+      100% {
+        transform: rotateZ(0);
+      }
+    }
+
+    @keyframes shrink {
+      0% {
+        transform: scale(0.8);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    </style>`;
+
+    for (let i = 0; i < divCount; i++) {
+        const classRandom = classList[Math.floor(Math.random() * classList.length)];
+        body += `<div class="${classRandom}">404</div>`;
+    }
+
+
+    return notice + body;
+}
 
 //Route used by form. Displays text input in the browser
 app.post('/dynTable', (req, res) => {
@@ -80,12 +139,7 @@ app.get(`/class`, (req, res) => {
 // ----- FOR WEEK 1 -----
 // ROUTE TO NON-EXISTING PAGE; 404 ERROR; FOR NETLIFY.
 app.use((req, res) => {
-    res.status(404).send(`
-        <title> Error </title>
-        <a href="/">HOME</a>
-        <h2>404 Error</h2>
-        <p>Page not found.</p>
-    `);
+    res.status(404).send(error404());
 });
 
 //Route with parameters. Displays first and last name in browser
@@ -93,17 +147,17 @@ app.get(`/:last/:first`, (req,res)=>{
     res.render(`farts`,{first:req.params.first, last:req.params.last,rules:`rules`})
 })
 
-/* // Default local port for local testing
-const localPort = 89;
+// Default local port for local testing
+// const localPort = 89;
 
 // env var for netlify port
-// let port = process.env.PORT // || localPort;
+let port = process.env.PORT // || localPort;
 
 // run the server on netlify or locally (node app.js)
-app.listen(localPort, () => {
-    console.log(`Server Running at http://localhost:${localPort}`);
+app.listen(port, () => {
+    console.log(`Server Running at http://localhost:${port}`);
 });
 
 
 // Export the Express app as a serverless function
-module.exports.handler = serverless(app); */
+module.exports.handler = serverless(app);
