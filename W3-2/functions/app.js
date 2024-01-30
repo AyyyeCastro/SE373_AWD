@@ -20,10 +20,10 @@ app.use(express.json())
 const data = `../data`
 
 //Route to the root directory. Displays the text in browser
-// app.get(`/`, (req, res) => {
-//     res.send(`<title> W1 </title><h2>Welcome to my first Node 
-//     application</h2>`);
-// });
+ app.get(`/`, (req, res) => {
+     res.send(`<title> W1 </title><h2>Welcome to my first Node 
+    application</h2>`);
+ });
 
 function dynTable(gridSize) {
     var notice = '<h1>Your generated table</h1> <a href="/"> Go Back</a>';
