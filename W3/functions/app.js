@@ -26,7 +26,7 @@ const data = `../data`
 //  });
 
 function dynTable(gridSize) {
-    var notice = '<h1>Your generated table</h1> <a href="/"> Go Back</a>';
+    var notice = '<h1>Your generated table</h1> <a href="/functions/public/index.html"> Go Back</a>';
     var table = '<table style="height: 45%; width: 45%; border: 5px solid;">';
     for (var i = 0; i < gridSize; i++) {
         table += '<tr>';
@@ -41,7 +41,7 @@ function dynTable(gridSize) {
 }
 
 function error404() {
-    var notice = '<a href="/">Page does not exist!</a></br>';
+    var notice = '<a href="/functions/public/index.html">Page does not exist!</a></br>';
     const classList = ['still', 'rotate', 'shrink'];
     const divCount = Math.floor(Math.random() * (51 - 20)) + 20;
     let body = '';
