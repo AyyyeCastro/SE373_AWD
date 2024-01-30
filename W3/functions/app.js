@@ -19,10 +19,11 @@ app.use(express.json())
 //path to the data folder
 const data = `../data`
 
-//Route to index.html... Hopefully
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+//Route to the root directory. Displays the text in browser
+//  app.get(`/`, (req, res) => {
+//      res.send(`<title> W1 </title><h2>Welcome to my first Node 
+//     application</h2>`);
+//  });
 
 function dynTable(gridSize) {
     var notice = '<h1>Your generated table</h1> <a href="/"> Go Back</a>';
