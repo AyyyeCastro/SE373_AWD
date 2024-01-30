@@ -20,16 +20,34 @@ app.use(express.json())
 const data = `../data`
 
 //Route to the root directory. Displays the text in browser
-app.get(`/`, (req, res) => {
-    res.send(`<title> W1 </title><h2>Welcome to my first Node 
-    application</h2>`);
-});
+// app.get(`/`, (req, res) => {
+//     res.send(`<title> W1 </title><h2>Welcome to my first Node 
+//     application</h2>`);
+// });
+
+function dynTable(gridSize) {
+    var notice = '<h1>Your generated table</h1> <a href="/"> Go Back</a>';
+    var table = '<table style="height: 45%; width: 45%; border: 5px solid;">';
+    for (var i = 0; i < gridSize; i++) {
+        table += '<tr>';
+        for (var j = 0; j < gridSize; j++) {
+            var color = ((1<<24)*Math.random()|0).toString(16);
+            table += '<td style="text-align: center; background-color: #' + color + ';">' + color + '<br /><span style="color: #ffffff;">' + color + '</span></td>';
+        }
+        table += '</tr>';
+    }
+    table += '</table>';
+    return notice + table;
+}
 
 
 //Route used by form. Displays text input in the browser
-app.post(`/junk`, (req,res)=>{
-    res.send(req.body.name)
-})
+app.post('/dynTable', (req, res) => {
+    var gridSize = req.body.gridSize;
+    var table = dynTable(gridSize);
+    res.send(table);
+});
+
 
 //Route with parameters.Reads JSON file and displays the selected id from the class.json file
 /*app.get(`/:file/:id`, (req,res)=>{
@@ -75,17 +93,17 @@ app.get(`/:last/:first`, (req,res)=>{
     res.render(`farts`,{first:req.params.first, last:req.params.last,rules:`rules`})
 })
 
-// Default local port for local testing
-// const localPort = 80;
+/* // Default local port for local testing
+const localPort = 89;
 
-// // env var for netlify port
+// env var for netlify port
 // let port = process.env.PORT // || localPort;
 
-// // run the server on netlify or locally (node app.js)
-// app.listen(port, () => {
-//     console.log(`Server Running at http://localhost:${port}`);
-// });
+// run the server on netlify or locally (node app.js)
+app.listen(localPort, () => {
+    console.log(`Server Running at http://localhost:${localPort}`);
+});
 
 
-// // Export the Express app as a serverless function
-// module.exports.handler = serverless(app);
+// Export the Express app as a serverless function
+module.exports.handler = serverless(app); */
