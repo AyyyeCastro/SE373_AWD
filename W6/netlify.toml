@@ -5,4 +5,8 @@ functions = "functions"
   from = "/*"
   to = "/.netlify/functions/app"
   status = 200
+  
+[functions]
+  directory = "functions"
+  included_files = ["views/**/*.hbs"]
 
