@@ -108,7 +108,7 @@ app.post('/employees/:id/delete', async (req, res) => {
 port = process.env.PORT // || localPort;
 
 // run the server on netlify or locally (node app.js)
-app.listen(localPort, () => {
+app.listen(port, () => {
   console.log(`Server Running at http://localhost:${port}`);
 });
 
